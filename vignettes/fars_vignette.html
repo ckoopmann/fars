@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Christian Koopmann" />
+
+<meta name="date" content="2017-05-27" />
+
+<title>Fars Package Introduction</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Fars Package Introduction</h1>
+<h4 class="author"><em>Christian Koopmann</em></h4>
+<h4 class="date"><em>2017-05-27</em></h4>
+
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>The <em>fars</em> package is meant to provide an interface to access accident data for different US-States from locally saved csv-files for each year and to enable the user to quickly generate both monthly summmaries of the data as well as visualize accident locations on state maps.</p>
+</div>
+<div id="data" class="section level1">
+<h1>Data</h1>
+<p>The data is supposed to be saved in <em>.csv.bz2</em> files with the filename <em>accident_YEAR.csv.bz2</em> with <em>YEAR</em> replaced with the respective year in 4 digits. The data should have the following structure (first six rows of data as saved in <em>inst/extdata/accident_2013.csv.bz2</em>):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">example_data =<span class="st"> </span>fars::<span class="kw">fars_read</span>(<span class="kw">file.path</span>(<span class="st">'..'</span>,<span class="st">'inst'</span>,<span class="st">'extdata'</span>,<span class="st">'accident_2013.csv.bz2'</span>))
+pander::<span class="kw">pandoc.table</span>(<span class="kw">head</span>(example_data))</code></pre></div>
+<table>
+<caption>Table continues below</caption>
+<colgroup>
+<col width="10%"></col>
+<col width="12%"></col>
+<col width="13%"></col>
+<col width="13%"></col>
+<col width="13%"></col>
+<col width="8%"></col>
+<col width="16%"></col>
+<col width="11%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">STATE</th>
+<th align="center">ST_CASE</th>
+<th align="center">VE_TOTAL</th>
+<th align="center">VE_FORMS</th>
+<th align="center">PVH_INVL</th>
+<th align="center">PEDS</th>
+<th align="center">PERNOTMVIT</th>
+<th align="center">PERMVIT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">10001</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">8</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">10002</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">10003</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">10004</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">3</td>
+</tr>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">10005</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">10006</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">3</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Table continues below</caption>
+<colgroup>
+<col width="12%"></col>
+<col width="11%"></col>
+<col width="8%"></col>
+<col width="7%"></col>
+<col width="10%"></col>
+<col width="8%"></col>
+<col width="13%"></col>
+<col width="8%"></col>
+<col width="11%"></col>
+<col width="6%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">PERSONS</th>
+<th align="center">COUNTY</th>
+<th align="center">CITY</th>
+<th align="center">DAY</th>
+<th align="center">MONTH</th>
+<th align="center">YEAR</th>
+<th align="center">DAY_WEEK</th>
+<th align="center">HOUR</th>
+<th align="center">MINUTE</th>
+<th align="center">NHS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">8</td>
+<td align="center">115</td>
+<td align="center">0</td>
+<td align="center">6</td>
+<td align="center">1</td>
+<td align="center">2013</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">55</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">55</td>
+<td align="center">1670</td>
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center">2013</td>
+<td align="center">5</td>
+<td align="center">21</td>
+<td align="center">24</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">89</td>
+<td align="center">1730</td>
+<td align="center">6</td>
+<td align="center">1</td>
+<td align="center">2013</td>
+<td align="center">1</td>
+<td align="center">11</td>
+<td align="center">45</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">73</td>
+<td align="center">350</td>
+<td align="center">6</td>
+<td align="center">1</td>
+<td align="center">2013</td>
+<td align="center">1</td>
+<td align="center">12</td>
+<td align="center">25</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">125</td>
+<td align="center">3050</td>
+<td align="center">6</td>
+<td align="center">1</td>
+<td align="center">2013</td>
+<td align="center">1</td>
+<td align="center">18</td>
+<td align="center">28</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">97</td>
+<td align="center">2100</td>
+<td align="center">8</td>
+<td align="center">1</td>
+<td align="center">2013</td>
+<td align="center">3</td>
+<td align="center">14</td>
+<td align="center">31</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Table continues below</caption>
+<colgroup>
+<col width="14%"></col>
+<col width="10%"></col>
+<col width="22%"></col>
+<col width="27%"></col>
+<col width="11%"></col>
+<col width="13%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">ROAD_FNC</th>
+<th align="center">ROUTE</th>
+<th align="center">TWAY_ID</th>
+<th align="center">TWAY_ID2</th>
+<th align="center">MILEPT</th>
+<th align="center">LATITUDE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">I-59</td>
+<td align="center">NA</td>
+<td align="center">1589</td>
+<td align="center">33.79196</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">US-SR 74</td>
+<td align="center">MCCLAIN ST</td>
+<td align="center">1397</td>
+<td align="center">33.98466</td>
+</tr>
+<tr class="odd">
+<td align="center">15</td>
+<td align="center">6</td>
+<td align="center">OAKWOOD AVE</td>
+<td align="center">NA</td>
+<td align="center">0</td>
+<td align="center">34.74947</td>
+</tr>
+<tr class="even">
+<td align="center">99</td>
+<td align="center">6</td>
+<td align="center">JEFFERSON AVE SW</td>
+<td align="center">NA</td>
+<td align="center">0</td>
+<td align="center">33.48591</td>
+</tr>
+<tr class="odd">
+<td align="center">11</td>
+<td align="center">1</td>
+<td align="center">I-359</td>
+<td align="center">NA</td>
+<td align="center">10</td>
+<td align="center">33.16856</td>
+</tr>
+<tr class="even">
+<td align="center">13</td>
+<td align="center">6</td>
+<td align="center">GOVERNMENT ST</td>
+<td align="center">PLEASANT VALLEY ROAD</td>
+<td align="center">0</td>
+<td align="center">30.66168</td>
+</tr>
+</tbody>
+</table>
+<table style="width:99%;">
+<caption>Table continues below</caption>
+<colgroup>
+<col width="15%"></col>
+<col width="12%"></col>
+<col width="13%"></col>
+<col width="15%"></col>
+<col width="13%"></col>
+<col width="13%"></col>
+<col width="13%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">LONGITUD</th>
+<th align="center">SP_JUR</th>
+<th align="center">HARM_EV</th>
+<th align="center">MAN_COLL</th>
+<th align="center">RELJCT1</th>
+<th align="center">RELJCT2</th>
+<th align="center">TYP_INT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">-86.38370</td>
+<td align="center">0</td>
+<td align="center">42</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">-85.88831</td>
+<td align="center">0</td>
+<td align="center">12</td>
+<td align="center">6</td>
+<td align="center">0</td>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">-86.62147</td>
+<td align="center">0</td>
+<td align="center">30</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">-86.85701</td>
+<td align="center">0</td>
+<td align="center">24</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">-87.55183</td>
+<td align="center">0</td>
+<td align="center">12</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">18</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">-88.10793</td>
+<td align="center">0</td>
+<td align="center">12</td>
+<td align="center">6</td>
+<td align="center">0</td>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Table continues below</caption>
+<colgroup>
+<col width="14%"></col>
+<col width="14%"></col>
+<col width="14%"></col>
+<col width="14%"></col>
+<col width="14%"></col>
+<col width="13%"></col>
+<col width="13%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">WRK_ZONE</th>
+<th align="center">REL_ROAD</th>
+<th align="center">LGT_COND</th>
+<th align="center">WEATHER1</th>
+<th align="center">WEATHER2</th>
+<th align="center">WEATHER</th>
+<th align="center">SCH_BUS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">4</td>
+<td align="center">2</td>
+<td align="center">10</td>
+<td align="center">0</td>
+<td align="center">10</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">3</td>
+<td align="center">10</td>
+<td align="center">0</td>
+<td align="center">10</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center">10</td>
+<td align="center">0</td>
+<td align="center">10</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">0</td>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Table continues below</caption>
+<colgroup>
+<col width="10%"></col>
+<col width="14%"></col>
+<col width="13%"></col>
+<col width="14%"></col>
+<col width="13%"></col>
+<col width="13%"></col>
+<col width="13%"></col>
+<col width="6%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">RAIL</th>
+<th align="center">NOT_HOUR</th>
+<th align="center">NOT_MIN</th>
+<th align="center">ARR_HOUR</th>
+<th align="center">ARR_MIN</th>
+<th align="center">HOSP_HR</th>
+<th align="center">HOSP_MN</th>
+<th align="center">CF1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0000000</td>
+<td align="center">99</td>
+<td align="center">99</td>
+<td align="center">1</td>
+<td align="center">7</td>
+<td align="center">99</td>
+<td align="center">99</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">0000000</td>
+<td align="center">99</td>
+<td align="center">99</td>
+<td align="center">21</td>
+<td align="center">33</td>
+<td align="center">99</td>
+<td align="center">99</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">0000000</td>
+<td align="center">99</td>
+<td align="center">99</td>
+<td align="center">11</td>
+<td align="center">54</td>
+<td align="center">99</td>
+<td align="center">99</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">0000000</td>
+<td align="center">99</td>
+<td align="center">99</td>
+<td align="center">12</td>
+<td align="center">33</td>
+<td align="center">99</td>
+<td align="center">99</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">0000000</td>
+<td align="center">99</td>
+<td align="center">99</td>
+<td align="center">18</td>
+<td align="center">29</td>
+<td align="center">99</td>
+<td align="center">99</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">0000000</td>
+<td align="center">99</td>
+<td align="center">99</td>
+<td align="center">14</td>
+<td align="center">32</td>
+<td align="center">99</td>
+<td align="center">99</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+<table style="width:43%;">
+<colgroup>
+<col width="8%"></col>
+<col width="8%"></col>
+<col width="12%"></col>
+<col width="13%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">CF2</th>
+<th align="center">CF3</th>
+<th align="center">FATALS</th>
+<th align="center">DRUNK_DR</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">2</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">2</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="functions" class="section level1">
+<h1>Functions</h1>
+<p>The package contains the following functions:</p>
+<ol style="list-style-type: decimal">
+<li><code>fars_read</code></li>
+<li><code>make_filename</code></li>
+<li><code>fars_read_years</code></li>
+<li><code>fars_summarize_years</code></li>
+<li><code>fars_map_state</code></li>
+</ol>
+<p>In the following only functions 3 to 5 are explained since they are the only ones meant to be called by the user directly. However help documentation for all functions can be retrieved any time using the R help function <code>?</code> and the function name.</p>
+<div id="fars_read_years" class="section level2">
+<h2><code>fars_read_years</code></h2>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>This function takes in a vector or list of years as integers, reads in the data for all those years and returns it as a list of data frames. It assumes that the data for all years sits in your current working directory in the format specified above. It will skip years for which this is not the case with a warning.</p>
+</div>
+<div id="example" class="section level2">
+<h2>Example</h2>
+<p>This function is used in the following way:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Ensure the working directory is where the data is</span>
+knitr::opts_knit$<span class="kw">set</span>(<span class="dt">root.dir =</span> <span class="kw">file.path</span>(<span class="st">'..'</span>,<span class="st">'inst'</span>,<span class="st">'extdata'</span>))
+<span class="co">#Load dplyr package</span>
+<span class="kw">library</span>(dplyr)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Read in Data for the years 2014-2016, the data for 2016 is not actually in the working directory and wil therefore cause a warning.</span>
+data_list =<span class="st"> </span>fars::<span class="kw">fars_read_years</span>(<span class="kw">list</span>(<span class="dv">2014</span>,<span class="dv">2016</span>,<span class="dv">2015</span>))</code></pre></div>
+<pre><code>## Warning in value[[3L]](cond): invalid year: 2016</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Check that the result is in fact a list of dfs</span>
+<span class="kw">str</span>(data_list)</code></pre></div>
+<pre><code>## List of 3
+##  $ :Classes 'tbl_df', 'tbl' and 'data.frame':    30056 obs. of  2 variables:
+##   ..$ MONTH: int [1:30056] 1 1 1 1 1 1 1 1 1 1 ...
+##   ..$ year : num [1:30056] 2014 2014 2014 2014 2014 ...
+##  $ : NULL
+##  $ :Classes 'tbl_df', 'tbl' and 'data.frame':    32166 obs. of  2 variables:
+##   ..$ MONTH: int [1:32166] 1 1 1 1 1 1 1 1 1 1 ...
+##   ..$ year : num [1:32166] 2015 2015 2015 2015 2015 ...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Check the structure of the dataframe for 2014</span>
+<span class="kw">str</span>(data_list[<span class="dv">1</span>])</code></pre></div>
+<pre><code>## List of 1
+##  $ :Classes 'tbl_df', 'tbl' and 'data.frame':    30056 obs. of  2 variables:
+##   ..$ MONTH: int [1:30056] 1 1 1 1 1 1 1 1 1 1 ...
+##   ..$ year : num [1:30056] 2014 2014 2014 2014 2014 ...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The sequence of the data in the list corresponds to the sequence in which the years where passed and therefore the second entry of this list should be a NULL value</span>
+<span class="kw">str</span>(data_list[<span class="dv">2</span>])</code></pre></div>
+<pre><code>## List of 1
+##  $ : NULL</code></pre>
+</div>
+<div id="fars_summarize_years" class="section level2">
+<h2><code>fars_summarize_years</code></h2>
+</div>
+<div id="summary-1" class="section level2">
+<h2>Summary</h2>
+<p>Just as <code>fars_read_years</code> this function takes as input several years. It returns a single dataframe with the monthly accident counts for each year. Again it just skips invalid years with a warning. ## Example This function is used in the following way:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">summary =<span class="st"> </span>fars::<span class="kw">fars_summarize_years</span>(<span class="kw">list</span>(<span class="dv">2014</span>,<span class="dv">2016</span>,<span class="dv">2015</span>))</code></pre></div>
+<pre><code>## Warning in value[[3L]](cond): invalid year: 2016</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(summary)</code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##   MONTH `2014` `2015`
+##   &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
+## 1     1   2168   2368
+## 2     2   1893   1968
+## 3     3   2245   2385
+## 4     4   2308   2430
+## 5     5   2596   2847
+## 6     6   2583   2765</code></pre>
+</div>
+<div id="fars_map_state" class="section level2">
+<h2><code>fars_map_state</code></h2>
+</div>
+<div id="summary-2" class="section level2">
+<h2>Summary</h2>
+<p>This function takes as input the number of a state and a year and plots the coordinates of all accidents in that year and state: ## Example This function is used in the following way:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fars::<span class="kw">fars_map_state</span>(<span class="dv">1</span>,<span class="dv">2013</span>)</code></pre></div>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

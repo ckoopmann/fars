@@ -1,0 +1,78 @@
+---
+title: "Fars Package Introduction"
+author: "Christian Koopmann"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Fars Package Introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+# Introduction
+The *fars* package is meant to provide an interface to access accident data for different US-States from locally saved csv-files for each year and to enable the user to quickly generate both monthly summmaries of the data as well as visualize accident locations on state maps.
+
+# Data
+The data is supposed to be saved in *.csv.bz2* files with the filename *accident_YEAR.csv.bz2* with *YEAR* replaced with the respective year in 4 digits.
+The data should have the following structure (first six rows of data as saved in *inst/extdata/accident_2013.csv.bz2*):
+```{R, results = "asis", message = FALSE}
+example_data = fars::fars_read(file.path('..','inst','extdata','accident_2013.csv.bz2'))
+pander::pandoc.table(head(example_data))
+```
+# Functions
+The package contains the following functions:
+
+1. `fars_read`
+1. `make_filename`
+1. `fars_read_years`
+1. `fars_summarize_years`
+1. `fars_map_state`
+
+In the following only functions 3 to 5 are explained since they are the only ones meant to be called by the user directly. However help documentation for all functions can be retrieved any time using the R help function `?` and the function name.
+
+## `fars_read_years`
+
+## Summary
+
+This function takes in a vector or list of years as integers, reads in the data for all those years and returns it as a list of data frames. It assumes that the data for all years sits in your current working directory in the format specified above. It will skip years for which this is not the case with a warning.
+
+## Example
+This function is used in the following way:
+
+```{R, message = FALSE}
+# Ensure the working directory is where the data is
+knitr::opts_knit$set(root.dir = file.path('..','inst','extdata'))
+#Load dplyr package
+library(dplyr)
+```
+```{R}
+
+# Read in Data for the years 2014-2016, the data for 2016 is not actually in the working directory and wil therefore cause a warning.
+data_list = fars::fars_read_years(list(2014,2016,2015))
+# Check that the result is in fact a list of dfs
+str(data_list)
+# Check the structure of the dataframe for 2014
+str(data_list[1])
+# The sequence of the data in the list corresponds to the sequence in which the years where passed and therefore the second entry of this list should be a NULL value
+str(data_list[2])
+```
+
+## `fars_summarize_years`
+
+## Summary
+Just as `fars_read_years` this function takes as input several years. It returns a single dataframe with the monthly accident counts for each year. Again it just skips invalid years with a warning.
+## Example
+This function is used in the following way:
+```{R}
+summary = fars::fars_summarize_years(list(2014,2016,2015))
+head(summary)
+```
+
+## `fars_map_state`
+
+## Summary
+This function takes as input the number of a state and a year and plots the coordinates of all accidents in that year and state:
+## Example
+This function is used in the following way:
+```{R, eval = FALSE}
+fars::fars_map_state(1,2013)
+```
