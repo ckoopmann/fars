@@ -14,5 +14,6 @@ Suggests: knitr,
     dplyr,
     maps,
     graphics,
-    tidyr
+    tidyr,
+    readr
 VignetteBuilder: knitr
