@@ -15,5 +15,6 @@ Suggests: knitr,
     maps,
     graphics,
     tidyr,
-    readr
+    readr,
+    pander
 VignetteBuilder: knitr
