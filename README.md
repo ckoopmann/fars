@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ckoopmann/fars.svg?branch=master)](https://travis-ci.org/ckoopmann/fars)
+
 # Fars Package
 This is the *fars* package as part of the Coursera Course *Building R Packages*.
 
