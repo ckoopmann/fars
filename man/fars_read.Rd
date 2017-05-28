@@ -18,8 +18,3 @@ This function checks if a given csv-file exists and if so reads it in silently a
 \note{
 Errors can result from the given filename not being a valid path to an existing file or the file not being encoded in the right format
 }
-\examples{
-fars_read('my_csv.csv')
-fars_read('/Users/User/my_csv.csv')
-
-}

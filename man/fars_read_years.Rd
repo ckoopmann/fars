@@ -19,7 +19,3 @@ read in the function skips that year with a warning
 \note{
 Errors in this function can result from errors thrown by the fars_read function or invalid years parameter being passed
 }
-\examples{
-fars_read_years(c(1991,2006))
-fars_read_years(list(1991, "2006"))
-}

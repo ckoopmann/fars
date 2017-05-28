@@ -11,10 +11,6 @@
 #' @importFrom readr read_csv
 #' @importFrom dplyr tbl_df
 #' 
-#' @examples
-#' fars_read('my_csv.csv')
-#' fars_read('/Users/User/my_csv.csv')
-#' 
 #' @export
 fars_read <- function(filename) {
         if(!file.exists(filename))
@@ -56,9 +52,6 @@ make_filename <- function(year) {
 #' 
 #' @note Errors in this function can result from errors thrown by the fars_read function or invalid years parameter being passed
 #' 
-#' @examples
-#' fars_read_years(c(1991,2006))
-#' fars_read_years(list(1991, "2006"))
 #' @export
 fars_read_years <- function(years) {
         lapply(years, function(year) {
@@ -89,9 +82,6 @@ fars_read_years <- function(years) {
 #' @importFrom dplyr summarize
 #' @importFrom tidyr spread
 #'
-#' @examples
-#' fars_summarize_years(c(1991,2006))
-#' fars_summarize_years(list(1991, "2006"))
 #' @export
 fars_summarize_years <- function(years) {
         dat_list <- fars_read_years(years)
@@ -113,8 +103,6 @@ fars_summarize_years <- function(years) {
 #' @importFrom maps map
 #' @importFrom graphics points
 #'
-#' @examples
-#' fars_map_state(2013,1)
 #' @export
 fars_map_state <- function(state.num, year) {
         filename <- make_filename(year)

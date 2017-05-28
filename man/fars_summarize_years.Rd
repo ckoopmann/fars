@@ -17,7 +17,3 @@ For a given collection of years this function reads in the accident data and the
 which contains one row for each calendar month containing the number of accidents in that month for different years
 in seperate columns
 }
-\examples{
-fars_summarize_years(c(1991,2006))
-fars_summarize_years(list(1991, "2006"))
-}

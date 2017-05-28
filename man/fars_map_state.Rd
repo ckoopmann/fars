@@ -17,6 +17,3 @@ Returns plot displaying longitude and latitude of the accidents on the map
 \description{
 For a selected year and state the locations of all accidents are shown on the map of that state
 }
-\examples{
-fars_map_state(2013,1)
-}
