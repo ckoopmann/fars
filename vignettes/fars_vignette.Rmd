@@ -11,13 +11,6 @@ vignette: >
 # Introduction
 The *fars* package is meant to provide an interface to access accident data for different US-States from locally saved csv-files for each year and to enable the user to quickly generate both monthly summmaries of the data as well as visualize accident locations on state maps.
 
-# Data
-The data is supposed to be saved in *.csv.bz2* files with the filename *accident_YEAR.csv.bz2* with *YEAR* replaced with the respective year in 4 digits.
-The data should have the following structure (first six rows of data as saved in *inst/extdata/accident_2013.csv.bz2*):
-```{R, results = "asis", message = FALSE}
-# example_data = readr::read_csv(file.path('..','inst','extdata','accident_2013.csv.bz2'))
-# pander::pandoc.table(head(example_data))
-```
 # Functions
 The package contains the following functions:
 

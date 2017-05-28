@@ -78,12 +78,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1>Introduction</h1>
 <p>The <em>fars</em> package is meant to provide an interface to access accident data for different US-States from locally saved csv-files for each year and to enable the user to quickly generate both monthly summmaries of the data as well as visualize accident locations on state maps.</p>
 </div>
-<div id="data" class="section level1">
-<h1>Data</h1>
-<p>The data is supposed to be saved in <em>.csv.bz2</em> files with the filename <em>accident_YEAR.csv.bz2</em> with <em>YEAR</em> replaced with the respective year in 4 digits. The data should have the following structure (first six rows of data as saved in <em>inst/extdata/accident_2013.csv.bz2</em>):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># example_data = readr::read_csv(file.path('..','inst','extdata','accident_2013.csv.bz2'))</span>
-<span class="co"># pander::pandoc.table(head(example_data))</span></code></pre></div>
-</div>
 <div id="functions" class="section level1">
 <h1>Functions</h1>
 <p>The package contains the following functions:</p>
