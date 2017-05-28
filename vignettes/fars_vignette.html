@@ -12,7 +12,7 @@
 
 <meta name="author" content="Christian Koopmann" />
 
-<meta name="date" content="2017-05-27" />
+<meta name="date" content="2017-05-28" />
 
 <title>Fars Package Introduction</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Fars Package Introduction</h1>
 <h4 class="author"><em>Christian Koopmann</em></h4>
-<h4 class="date"><em>2017-05-27</em></h4>
+<h4 class="date"><em>2017-05-28</em></h4>
 
 
 
@@ -81,7 +81,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="data" class="section level1">
 <h1>Data</h1>
 <p>The data is supposed to be saved in <em>.csv.bz2</em> files with the filename <em>accident_YEAR.csv.bz2</em> with <em>YEAR</em> replaced with the respective year in 4 digits. The data should have the following structure (first six rows of data as saved in <em>inst/extdata/accident_2013.csv.bz2</em>):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">example_data =<span class="st"> </span>fars::<span class="kw">fars_read</span>(<span class="kw">file.path</span>(<span class="st">'..'</span>,<span class="st">'inst'</span>,<span class="st">'extdata'</span>,<span class="st">'accident_2013.csv.bz2'</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">example_data =<span class="st"> </span>readr::<span class="kw">read_csv</span>(<span class="kw">file.path</span>(<span class="st">'..'</span>,<span class="st">'inst'</span>,<span class="st">'extdata'</span>,<span class="st">'accident_2013.csv.bz2'</span>))
 pander::<span class="kw">pandoc.table</span>(<span class="kw">head</span>(example_data))</code></pre></div>
 <table>
 <caption>Table continues below</caption>
